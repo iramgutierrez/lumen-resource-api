@@ -49,12 +49,34 @@ class BaseController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        $response = $this->manager->save($data);
+
+        if ($response instanceof Entity)
+        {
+            return response()->json($response, 200);
+        }
+        else if ($response instanceof MessageBag)
+        {
+            return response()->json($this->parseErrors($response), 400);
+        }
+
+        return response()->json(['error' => 'Server error. Try Again'], 500);
+    }
+
+    /**
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Request $request, $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if (!$resource) {
             return response()->json(['error' => 'Entity not found'], 404);
@@ -64,27 +86,12 @@ class BaseController extends Controller
 
     /**
      * @param Request $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
-    {
-        $data = $request->all();
-
-        $response = $this->manager->save($data);
-
-        if ($response instanceof Entity) {
-
-            return response()->json($response, 200);
-        } else if ($response instanceof MessageBag) {
-            return response()->json($response, 400);
-        }
-
-        return response()->json(['error' => 'Server error. Try Again'], 500);
-    }
-
     public function update(Request $request, $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if (!$resource) {
             return response()->json(['error' => 'Entity not found'], 404);
@@ -96,19 +103,27 @@ class BaseController extends Controller
 
         $response = $this->manager->update($data);
 
-        if ($response instanceof Entity) {
-
+        if ($response instanceof Entity)
+        {
             return response()->json($response, 200);
-        } else if ($response instanceof MessageBag) {
-            return response()->json($response, 400);
+        }
+        else if ($response instanceof MessageBag)
+        {
+            return response()->json($this->parseErrors($response), 400);
         }
 
         return response()->json(['error' => 'Server error. Try Again'], 500);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function destroy(Request $request , $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if(!$resource)
         {
@@ -121,9 +136,27 @@ class BaseController extends Controller
 
         if($response){
 
-            return response()->json(['success' => 'Entity deleted'], 200);
+            return response()->make('', 204);
         }
 
         return response()->json(['error' => 'Server error. Try Again' ],500);
+    }
+
+    /**
+     * @param MessageBag $bag
+     * @return array
+     */
+    private function parseErrors(MessageBag $bag)
+    {
+        $errors = [];
+
+        $keys = $bag->keys();
+
+        foreach($keys as $key)
+        {
+            $errors[$key] = $bag->first($key);
+        }
+
+        return ['errors' => $errors];
     }
 }

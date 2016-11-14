@@ -87,7 +87,7 @@ abstract class BaseController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if (!$resource) {
             return response()->json(['error' => 'Entity not found'], 404);
@@ -102,7 +102,7 @@ abstract class BaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if (!$resource) {
             return response()->json(['error' => 'Entity not found'], 404);
@@ -133,7 +133,7 @@ abstract class BaseController extends Controller
      */
     public function destroy(Request $request , $id)
     {
-        $resource = $this->repository->findById($id);
+        $resource = $this->repository->find($id);
 
         if(!$resource)
         {
