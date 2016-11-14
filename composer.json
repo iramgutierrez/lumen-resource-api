@@ -13,7 +13,8 @@
     "memio/memio": "^1.0",
     "illuminate/http": "5.3.*",
     "illuminate/support": "5.3.*",
-    "illuminate/console": "5.3.*"
+    "illuminate/console": "5.3.*",
+    "laravelista/lumen-vendor-publish": "^2.0"
 
   },
   "autoload": {
