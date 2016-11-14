@@ -2,7 +2,7 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-[![Total Downloads](https://img.shields.io/packagist/dt/iramgutierrez/laravel-resource-api.svg?style=flat-square)](https://packagist.org/packages/iramgutierrez/laravel-resource-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/iramgutierrez/$contentRoutes .= "\n"; $contentRoutes .= '$app->get(\''.$route['path']."' -resource-api.svg?style=flat-square)](https://packagist.org/packages/iramgutierrez/$contentRoutes .= "\n"; $contentRoutes .= '$app->get(\''.$route['path']."' -resource-api)
 
 Full resource generator for API RESTful, 
 
@@ -22,7 +22,7 @@ This package implements the layers pattern design, include:
 Add the following line to your `composer.json` file:
 
 ```
-"iramgutierrez/laravel-resource-api": "1.1.*"
+"iramgutierrez/lumen-resource-api": "1.1.*"
 ```
 
 Run `composer update` to get the package.

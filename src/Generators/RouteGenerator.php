@@ -18,11 +18,9 @@ class RouteGenerator{
 
         $file = base_path().'/routes/web.php';
 
-        $contentRoutes .= "\n";
+        $delimiter = '/**  GENERATE BY iramgutierrez/lumen-resource-api DO NOT REMOVE **/';
 
-        $delimiter = '/**  GENERATE BY iramgutierrez/laravel-resource-api DO NOT REMOVE **/';
-
-        $contentRoutes = "";
+        $contentRoutes = "\n";
 
         $contentRoutes .= $delimiter;
 
