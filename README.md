@@ -2,7 +2,7 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-[![Total Downloads](https://img.shields.io/packagist/dt/iramgutierrez/$contentRoutes .= "\n"; $contentRoutes .= '$app->get(\''.$route['path']."' -resource-api.svg?style=flat-square)](https://packagist.org/packages/iramgutierrez/lumen-resource-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/iramgutierrez/lumen-resource-api.svg?style=flat-square)](https://packagist.org/packages/iramgutierrez/lumen-resource-api)
 
 Full resource generator for API RESTful, 
 
@@ -22,7 +22,7 @@ This package implements the layers pattern design, include:
 Add the following line to your `composer.json` file:
 
 ```
-"iramgutierrez/lumen-resource-api": "1.1.*"
+"iramgutierrez/lumen-resource-api": "1.2.*"
 ```
 
 Run `composer update` to get the package.
@@ -34,6 +34,15 @@ $app->register(\IramGutierrez\API\APIServiceProvider::class);
 ```
 
 ### Migrations and Configuration Publishing
+
+Add this line of code to the `$commands` protected array located in your `app/Console/Kernel.php` file:
+
+```
+\Laravelista\LumenVendorPublish\VendorPublishCommand::class
+```
+
+
+
 Run `php artisan vendor:publish` to publish this package configuration and migrations. Afterwards you can edit the file `config/resource_api.php` to set the namespace for the resources generated.
 
 Run migration to create required tables
@@ -122,4 +131,4 @@ When the execution is finished, you should have available the following function
 
 ## License
 
-The Laravel Resource API package is released under [the MIT License](LICENSE).
+The Lumen Resource API package is released under [the MIT License](LICENSE).
