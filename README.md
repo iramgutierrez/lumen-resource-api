@@ -22,7 +22,7 @@ This package implements the layers pattern design, include:
 Add the following line to your `composer.json` file:
 
 ```
-"iramgutierrez/lumen-resource-api": "1.2.*"
+"iramgutierrez/lumen-resource-api": "1.3.*"
 ```
 
 Run `composer update` to get the package.
