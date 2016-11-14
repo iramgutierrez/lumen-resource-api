@@ -39,14 +39,6 @@ class ValidatorGenerator extends BaseGenerator{
                             ->addArgument(new Argument('Entity', 'Entity'))
                             ->setBody('        parent::__construct($Entity);')
                     )
-                    ->addMethod(
-                        Method::make('getCreateRules')
-                            ->setBody('        return parent::getCreateRules();')
-                    )
-                    ->addMethod(
-                        Method::make('getUpdateRules')
-                            ->setBody('        return parent::getUpdateRules();')
-                    )
             );
 
         $prettyPrinter = Build::prettyPrinter();

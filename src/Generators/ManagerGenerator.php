@@ -36,24 +36,6 @@ class ManagerGenerator extends BaseGenerator{
                             ->addArgument(new Argument('Validator', 'Validator'))
                             ->setBody('        return parent::__construct($Entity , $Validator);')
                     )
-                    ->addMethod(
-                        Method::make('save')
-                            ->addArgument(new Argument('array', 'data'))
-                            ->setBody('        return parent::save($data);')
-                    )
-                    ->addMethod(
-                        Method::make('update')
-                            ->addArgument(new Argument('array', 'data'))
-                            ->setBody('        return parent::update($data);')
-                    )
-                    ->addMethod(
-                        Method::make('delete')
-                            ->setBody('        return parent::delete();')
-                    )
-                    ->addMethod(
-                        Method::make('prepareData')
-                            ->setBody('        return parent::prepareData();')
-                    )
             );
 
         $prettyPrinter = Build::prettyPrinter();
