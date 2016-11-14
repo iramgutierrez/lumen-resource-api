@@ -5,10 +5,10 @@ namespace IramGutierrez\API\Generators;
 use Memio\Memio\Config\Build;
 use Memio\Model\File;
 use Memio\Model\Object;
-use Memio\Model\Property;
 use Memio\Model\Method;
 use Memio\Model\Argument;
-use Memio\Model\Constant;
+use Memio\Model\Phpdoc\Description;
+use Memio\Model\Phpdoc\MethodPhpdoc;
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Phpdoc\LicensePhpdoc;
 
@@ -31,6 +31,11 @@ class RepositoryGenerator extends BaseGenerator{
                     ->extend(new Object(BaseRepository::class))
                     ->addMethod(
                         Method::make('__construct')
+                            ->setPhpdoc(MethodPhpdoc::make()
+                                ->setDescription(Description::make('')
+                                    ->addLine('@param Entity $Entity')
+                                )
+                            )
                             ->addArgument(new Argument('Entity', 'Entity'))
                             ->setBody('        parent::__construct($Entity);')
                     )

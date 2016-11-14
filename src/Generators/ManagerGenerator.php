@@ -5,10 +5,10 @@ namespace IramGutierrez\API\Generators;
 use Memio\Memio\Config\Build;
 use Memio\Model\File;
 use Memio\Model\Object;
-use Memio\Model\Property;
 use Memio\Model\Method;
 use Memio\Model\Argument;
-use Memio\Model\Constant;
+use Memio\Model\Phpdoc\Description;
+use Memio\Model\Phpdoc\MethodPhpdoc;
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Phpdoc\LicensePhpdoc;
 
@@ -32,6 +32,12 @@ class ManagerGenerator extends BaseGenerator{
                     ->extend(new Object(BaseManager::class))
                     ->addMethod(
                         Method::make('__construct')
+                            ->setPhpdoc(MethodPhpdoc::make()
+                                ->setDescription(Description::make('')
+                                    ->addLine('@param Entity $Entity')
+                                    ->addLine('@param Validator $Validator')
+                                )
+                            )
                             ->addArgument(new Argument('Entity', 'Entity'))
                             ->addArgument(new Argument('Validator', 'Validator'))
                             ->setBody('        return parent::__construct($Entity , $Validator);')

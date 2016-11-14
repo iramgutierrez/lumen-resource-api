@@ -5,10 +5,9 @@ namespace IramGutierrez\API\Generators;
 use Memio\Memio\Config\Build;
 use Memio\Model\File;
 use Memio\Model\Object;
+use Memio\Model\Phpdoc\PropertyPhpdoc;
+use Memio\Model\Phpdoc\VariableTag;
 use Memio\Model\Property;
-use Memio\Model\Method;
-use Memio\Model\Argument;
-use Memio\Model\Constant;
 use Memio\Model\FullyQualifiedName;
 use Memio\Model\Phpdoc\LicensePhpdoc;
 
@@ -44,21 +43,33 @@ class EntityGenerator extends BaseGenerator{
                     )
                     ->addProperty(
                         Property::make('table')
+                            ->setPhpdoc(PropertyPhpdoc::make()
+                               ->setVariableTag(new VariableTag('$table'))
+                            )
                             ->makeProtected()
                             ->setDefaultValue("'".$this->table."'")
                     )
                     ->addProperty(
                         Property::make('fillable')
+                            ->setPhpdoc(PropertyPhpdoc::make()
+                                ->setVariableTag(new VariableTag('$fillable'))
+                            )
                             ->makeProtected()
                             ->setDefaultValue("['id' , 'name']")
                     )
                     ->addProperty(
                         Property::make('hidden')
+                            ->setPhpdoc(PropertyPhpdoc::make()
+                                ->setVariableTag(new VariableTag('$hidden'))
+                            )
                             ->makeProtected()
                             ->setDefaultValue("[]")
                     )
                     ->addProperty(
                         Property::make('appends')
+                            ->setPhpdoc(PropertyPhpdoc::make()
+                                ->setVariableTag(new VariableTag('$appends'))
+                            )
                             ->makeProtected()
                             ->setDefaultValue("[]")
                     )

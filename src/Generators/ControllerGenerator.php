@@ -44,28 +44,28 @@ class ControllerGenerator extends BaseGenerator{
         /*GENERATE BASE CONTROLLER FOR NAMESPACE */
         if(!FileSystem::exists($this->path.$this->pathname.'/BaseController.php'))
         {
-          $baseDistPath = realpath(__DIR__.'/../Controllers/BaseController.php.dist');
-          $basePath = realpath(__DIR__.'/../Controllers/').'/BaseController.php';
-          $copy = FileSystem::copy($baseDistPath , $basePath);
+            $baseDistPath = realpath(__DIR__.'/../Controllers/BaseController.php.dist');
+            $basePath = realpath(__DIR__.'/../Controllers/').'/BaseController.php';
+            $copy = FileSystem::copy($baseDistPath , $basePath);
 
-          $base = realpath(__DIR__.'/../Controllers/BaseController.php');
+            $base = realpath(__DIR__.'/../Controllers/BaseController.php');
 
-          $find = 'use App\Http\Controllers\Controller;';
+            $find = 'use App\Http\Controllers\Controller;';
 
-          $replace = 'use '.$this->getAppNamespace().'Http\Controllers\Controller;';
+            $replace = 'use '.$this->getAppNamespace().'Http\Controllers\Controller;';
 
-          $find2 = 'namespace AppNamespace\Http\Controllers\API;';
+            $find2 = 'namespace AppNamespace\Http\Controllers\API;';
 
-          $replace2 = 'namespace '.$this->getAppNamespace().'Http\Controllers\\'.$this->pathname.';';
+            $replace2 = 'namespace '.$this->getAppNamespace().'Http\Controllers\\'.$this->pathname.';';
 
-          FileSystem::put($base , str_replace($find2 , $replace2 , str_replace($find , $replace , file_get_contents($base))));
+            FileSystem::put($base , str_replace($find2 , $replace2 , str_replace($find , $replace , file_get_contents($base))));
 
-          if(!FileSystem::isDirectory($this->path.$this->pathname))
-          {
-              FileSystem::makeDirectory($this->path.$this->pathname);
-          }
+            if(!FileSystem::isDirectory($this->path.$this->pathname))
+            {
+                FileSystem::makeDirectory($this->path.$this->pathname);
+            }
 
-          FileSystem::move($base , $this->path.$this->pathname.'/BaseController.php');
+            FileSystem::move($base , $this->path.$this->pathname.'/BaseController.php');
 
         }
 
@@ -82,6 +82,12 @@ class ControllerGenerator extends BaseGenerator{
                     ->extend(new Object(BaseController::class))
                     ->addMethod(
                         Method::make('__construct')
+                            ->setPhpdoc(MethodPhpdoc::make()
+                                ->setDescription(Description::make('')
+                                    ->addLine('@param Repository $Repository')
+                                    ->addLine('@param Manager $Manager')
+                                )
+                            )
                             ->addArgument(new Argument('Repository', 'Repository'))
                             ->addArgument(new Argument('Manager', 'Manager'))
                             ->setBody('        return parent::__construct($Repository , $Manager);')
@@ -121,6 +127,10 @@ class ControllerGenerator extends BaseGenerator{
                                     ->addLine("{")
                                     ->addLine('    error: Server error. Try again.')
                                     ->addLine("}")
+                                    ->addEmptyLine()
+                                    ->addEmptyLine()
+                                    ->addLine('@param Request $Request')
+                                    ->addLine('@return \Illuminate\Http\JsonResponse')
                                 )
 
                             )
@@ -168,6 +178,10 @@ class ControllerGenerator extends BaseGenerator{
                                     ->addLine("{")
                                     ->addLine('    error: Server error. Try again.')
                                     ->addLine("}")
+                                    ->addEmptyLine()
+                                    ->addEmptyLine()
+                                    ->addLine('@param Request $Request')
+                                    ->addLine('@return \Illuminate\Http\JsonResponse')
                                 )
 
                             )
@@ -211,6 +225,11 @@ class ControllerGenerator extends BaseGenerator{
                                     ->addLine("{")
                                     ->addLine('    error: Server error. Try again.')
                                     ->addLine("}")
+                                    ->addEmptyLine()
+                                    ->addEmptyLine()
+                                    ->addLine('@param Request $Request')
+                                    ->addLine('@param $id')
+                                    ->addLine('@return \Illuminate\Http\JsonResponse')
                                 )
 
                             )
@@ -268,6 +287,11 @@ class ControllerGenerator extends BaseGenerator{
                                     ->addLine("{")
                                     ->addLine('    error: Server error. Try again.')
                                     ->addLine("}")
+                                    ->addEmptyLine()
+                                    ->addEmptyLine()
+                                    ->addLine('@param Request $Request')
+                                    ->addLine('@param $id')
+                                    ->addLine('@return \Illuminate\Http\JsonResponse')
                                 )
 
                             )
@@ -303,6 +327,11 @@ class ControllerGenerator extends BaseGenerator{
                                     ->addLine("{")
                                     ->addLine('    error: Server error. Try again.')
                                     ->addLine("}")
+                                    ->addEmptyLine()
+                                    ->addEmptyLine()
+                                    ->addLine('@param Request $Request')
+                                    ->addLine('@param $id')
+                                    ->addLine('@return \Illuminate\Http\JsonResponse')
                                 )
 
                             )
