@@ -1,6 +1,6 @@
 {
-  "name": "iramgutierrez/laravel-resource-api",
-  "description": "Create a resource API for Laravel 5.2: entity, repository, manager, validator, controller, migration, table , route and documentation",
+  "name": "iramgutierrez/lumen-resource-api",
+  "description": "Create a resource API for Lumen 5.3: entity, repository, manager, validator, controller, migration, table , route and documentation",
   "license": "MIT",
   "authors": [
     {
