@@ -20,7 +20,10 @@
     "classmap": [],
     "psr-4": {
       "IramGutierrez\\API\\": "src"
-    }
+    },
+    "files": [
+      "src/helpers.php"
+    ]
   },
   "extra": {
     "branch-alias": {

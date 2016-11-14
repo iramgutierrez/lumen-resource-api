@@ -1,4 +1,4 @@
-# Resource API Generator for Laravel 5.2
+# Resource API Generator for Lumen 5.3
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
@@ -22,21 +22,15 @@ This package implements the layers pattern design, include:
 Add the following line to your `composer.json` file:
 
 ```
-"iramgutierrez/laravel-resource-api": "1.0.*"
+"iramgutierrez/laravel-resource-api": "1.1.*"
 ```
 
 Run `composer update` to get the package.
 
-Once composer has installed the package add this line of code to the `providers` array located in your `config/app.php` file:
+Once composer has installed the package add this line of code in your `bootstrap/app.php` file:
 
 ```
-IramGutierrez\API\APIServiceProvider::class,
-```
-
-Add this line of code to the `$commands` protected array located in your `app/Console/Kernel.php` file:
-
-```
-\IramGutierrez\API\ResourceAPI::class,
+$app->register(\IramGutierrez\API\APIServiceProvider::class);
 ```
 
 ### Migrations and Configuration Publishing
